@@ -73,56 +73,20 @@ connection.once('open', async () => {
 
     
 
-    //add friends list to each user
-    for (let i = 0; i < 20; i++) {
-        let friend1, friend2;
-        friend1 = { username: users[i + 20].username, email: users[i + 20].email };
-
-        friend2 = { username: users[i + 1].username, email: users[i + 1].email };
-        users[i].friends = [friend1, friend2]
-    }
 
     // Add users to the collection and await the results
     await User.collection.insertMany(users);
-
-    // // Loop 20 times -- add reactions to the reactions array
-    // for (let i = 0; i < 20; i++) {
-    //     // Get some random reaction objects using a helper function that we imported from ./data
-    //     const user = getUser(i);
-    //     const thought = getThought(i);
-    //     const reaction = [{ reactionText: getReaction(i), username: getUser(i + 20).username },
-    //     { reactionText: getReaction(i + 1), username: getUser(i + 1).username }];
-
-    //     let thoughtObj = {
-    //         thoughtText: thought,
-    //         username: user.username,
-    //         reactions: [reaction]
-    //     };
-
-    //     thoughts.push(thoughtObj);
-
-    //     let friend1, friend2;
-    //     friend1 = { username: getUser(i + 20).username, email: getUser(i + 20).email };
-
-    //     friend2 = { username: getUser(i + 1).username, email: getUser(i + 1).email };
-
-    //     users.push({
-    //         username: user.username,
-    //         email: user.email,
-    //         thoughts: [thoughtObj],
-    //         friends: [friend1, friend2]
-    //     })
-    // }
-
-    // console.log(thoughts);
-    // console.log(users);
-
-
-    // // Add users to the collection and await the results
-    // await User.collection.insertMany(users);
-
-    // // Add thoughts to the collection and await the results
-    // await Thought.collection.insertMany(thoughts);
+  
+    //add friends list to each user
+    for (let i = 0; i < 20; i++) {
+        
+        const filter = {_id: users[i]._id};
+        const update = {friends:[users[i+1]._id, users[i+20]._id]};
+        
+        await User.findOneAndUpdate(filter, update, {
+            new: true
+          });
+    }
 
     console.info('Seeding complete! 🌱');
     process.exit(0);
