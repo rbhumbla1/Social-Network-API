@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
-const reactionSchema = require('./Reaction');
-const thoughtSchema = require('./Thought').schema;
+// const reactionSchema = require('./Reaction');
+// const thoughtSchema = require('./Thought').schema;
 
 
 // Schema to create User model
@@ -16,9 +16,20 @@ const userSchema = new Schema(
             required: true,
             unique: true,
             match: /.+\@.+\..+/,
-        },
-        thoughts: [thoughtSchema],
-        friends: [this],
+        },   
+       thoughts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Thought',
+            },
+        ],
+
+        friends: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User',
+            },
+        ],
     },
     {
         toJSON: {

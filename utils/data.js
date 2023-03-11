@@ -85,7 +85,7 @@ const reactionsArr = [
     'I will be tere',
     'lol',
     'hahaha',
-    'Fighting!'
+    'Fighting!',
 ];
 
 
