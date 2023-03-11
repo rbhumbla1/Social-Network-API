@@ -26,7 +26,7 @@ connection.once('open', async () => {
         thoughts.push({
             thoughtText: getThought(i),
             username: getUser(i).username,
-            reaction: [{reactionBody: getReaction(i),
+            reactions: [{reactionBody: getReaction(i),
                         username: getUser(i+20).username},
                         {reactionBody: getReaction(i+1),
                             username: getUser(i+1).username}]

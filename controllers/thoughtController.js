@@ -11,7 +11,6 @@ module.exports = {
     getSingleThought(req, res) {
         Thought.findOne({ _id: req.params.thoughtId })
             .select('-__v')
-            .populate({ path: 'reactions', select: "-__v" })
             .then((thought) =>
                 !thought
                     ? res.status(404).json({ message: 'No thought with that ID' })
@@ -67,27 +66,18 @@ module.exports = {
     },
     //add a reaction
     addReaction(req, res) {
-        console.log('You are adding an reaction');
-        console.log(req.body);
-        Reaction.create(req.body)
-            .then((reaction) => {
-                if (!reaction)
-                    res.status(404).json({ message: 'Reaction failed in creation' })
-                else {
-                    Thought.findOneAndUpdate(
-                        { _id: req.params.thoughtId },
-                        { $addToSet: { reactions: reaction } },
-                        { runValidators: true, new: true }
-                    )
-                        .then((thought) =>
-                            !thought
-                                ? res.status(404).json({ message: 'No thought with this id!' })
-                                : res.json(thought)
-                        )
-                }
-            })
-            .catch((err) => res.status(500).json(err));
-    },
+        Thought.findOneAndUpdate(
+          { _id: req.params.thoughtId },
+          { $addToSet: { reactions: req.body } },
+          { runValidators: true, new: true }
+        )
+          .then((thought) =>
+            !thought
+              ? res.status(404).json({ message: 'No thought with this id!' })
+              : res.json(thought)
+          )
+          .catch((err) => res.status(500).json(err));
+      },
     //remove a reaction
     removeReaction(req, res) {
         Thought.findOneAndUpdate(
