@@ -93,7 +93,7 @@ module.exports = {
                         .json({ message: 'No thought found with that ID :(' })
                     : res.json(thought)
             )
-            .catch((err) => {console.log(err); res.status(500).json(err)});
+            .catch((err) => { res.status(500).json(err)});
     },
 
 };
