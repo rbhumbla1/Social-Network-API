@@ -77,7 +77,7 @@ module.exports = {
               ? res.status(404).json({ message: 'No thought with this id!' })
               : res.json(thought)
           )
-          .catch((err) => res.status(500).json(err));
+          .catch((err) => {console.log(err); res.status(500).json(err)});
       },
     //remove a reaction
     removeReaction(req, res) {
@@ -93,7 +93,7 @@ module.exports = {
                         .json({ message: 'No thought found with that ID :(' })
                     : res.json(thought)
             )
-            .catch((err) => res.status(500).json(err));
+            .catch((err) => {console.log(err); res.status(500).json(err)});
     },
 
 };
