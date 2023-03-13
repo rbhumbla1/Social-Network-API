@@ -19,9 +19,9 @@ const reactionSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,
-            // get: (date) => {
-            //     if (date) return "On " + date.toISOString().split("T")[0] + " at " + date.toISOString().split("T")[1];
-            // }
+            get: (date) => {
+                if (date) return "On " + date.toISOString().split("T")[0] + " at " + date.toISOString().split("T")[1];
+            }
         },
     },
     {
