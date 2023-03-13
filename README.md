@@ -1,57 +1,13 @@
 # Social-Network-API
-An API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list.  The API uses MongoDB database, Mongoose ODM and Express.js,
+An API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list.  The API uses NoSQLMongoDB database, Mongoose ODM and Express.js,
 
-## User Story
+## Description
 
-```md
-AS A social media startup
-I WANT an API for my social network that uses a NoSQL database
-SO THAT my website can handle large amounts of unstructured data
-```
-
-## Acceptance Criteria
-
-```md
-GIVEN a social network API
-WHEN I enter the command to invoke the application
-THEN my server is started and the Mongoose models are synced to the MongoDB database
-WHEN I open API GET routes in Insomnia for users and thoughts
-THEN the data for each of these routes is displayed in a formatted JSON
-WHEN I test API POST, PUT, and DELETE routes in Insomnia
-THEN I am able to successfully create, update, and delete users and thoughts in my database
-WHEN I test API POST and DELETE routes in Insomnia
-THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
-```
-
-## Mock Up
-
-The following animations show examples of the application's API routes being tested in Insomnia.
-
-The following animation shows GET routes to return all users and all thoughts being tested in Insomnia:
-
-![Demo of GET routes to return all users and all thoughts being tested in Insomnia.](./Assets/18-nosql-homework-demo-01.gif)
-
-The following animation shows GET routes to return a single user and a single thought being tested in Insomnia:
-
-![Demo that shows GET routes to return a single user and a single thought being tested in Insomnia.](./Assets/18-nosql-homework-demo-02.gif)
-
-The following animation shows the POST, PUT, and DELETE routes for users being tested in Insomnia:
-
-![Demo that shows the POST, PUT, and DELETE routes for users being tested in Insomnia.](./Assets/18-nosql-homework-demo-03.gif)
-
-In addition to this, your walkthrough video should show the POST, PUT, and DELETE routes for thoughts being tested in Insomnia.
-
-The following animation shows the POST and DELETE routes for a user’s friend list being tested in Insomnia:
-
-![Demo that shows the POST and DELETE routes for a user’s friend list being tested in Insomnia.](./Assets/18-nosql-homework-demo-04.gif)
-
-In addition to this, your walkthrough video should show the POST and DELETE routes for reactions to thoughts being tested in Insomnia.
-
-## Getting Started
-
-Be sure to have MongoDB installed on your machine. Follow the [MongoDB installation guide on The Full-Stack Blog](https://coding-boot-camp.github.io/full-stack/mongodb/how-to-install-mongodb) to install MongoDB locally.
-
-Use the following guidelines to set up your models and API routes:
+* the user can start the social network API by entering the following command to start the server and to sync the Mongoose models with the MongoDB database
+* When the user opens API GET routes in Insomnia for users and thoughts then the data for each of these routes is displayed in a formatted JSON
+* When the user tests API POST, PUT, and DELETE routes in Insomnia then they are able to successfully create, update, and delete users and thoughts in the database
+* When the user tests API POST and DELETE routes in Insomnia, they are able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
+* The Models is and API Routes are described below
 
 ### Models
 
@@ -77,7 +33,7 @@ Use the following guidelines to set up your models and API routes:
 
 **Schema Settings**:
 
-Create a virtual called `friendCount` that retrieves the length of the user's `friends` array field on query.
+A virtual called `friendCount` is provided that retrieves the length of the user's `friends` array field on query.
 
 ---
 
@@ -102,7 +58,7 @@ Create a virtual called `friendCount` that retrieves the length of the user's `f
 
 **Schema Settings**:
 
-Create a virtual called `reactionCount` that retrieves the length of the thought's `reactions` array field on query.
+A virtual called `reactionCount` is provided that retrieves the length of the thought's `reactions` array field on query.
 
 ---
 
@@ -128,7 +84,7 @@ Create a virtual called `reactionCount` that retrieves the length of the thought
 
 **Schema Settings**:
 
-This will not be a model, but rather will be used as the `reaction` field's subdocument schema in the `Thought` model.
+This is not be a model, but rather is used as the `reaction` field's subdocument schema in the `Thought` model.
 
 ### API Routes
 
@@ -152,7 +108,7 @@ This will not be a model, but rather will be used as the `reaction` field's subd
 
 * `DELETE` to remove user by its `_id`
 
-**BONUS**: Remove a user's associated thoughts when deleted.
+**BONUS**: Removing a user's associated thoughts when a user is deleted.
 
 ---
 
@@ -192,4 +148,65 @@ This will not be a model, but rather will be used as the `reaction` field's subd
 * `POST` to create a reaction stored in a single thought's `reactions` array field
 
 * `DELETE` to pull and remove a reaction by the reaction's `reactionId` value
+
+## Technology Used
+
+* Uses the [express package](https://www.npmjs.com/package/express).
+* Uses the [moonoose package](https://www.npmjs.com/package/mongoose) 
+* Uses the MongoDB as database
+
+## Installation
+
+  To install necessary dependencies, run the following command:
+  ```
+  npm i
+  ```
+  To install MongoDB database locally:
+  ```
+  Follow the MongoDB installation guide on The Full-Stack Blog at https://coding-boot-camp.github.io/full-stack/mongodb/how-to-install-mongodb
+  ```
+  
+  To create the seed data, do the following steps:
+  ```
+  npm run seed
+  ```
+  Run the server using the following command:
+  ```
+  npm run dev (to start with nodemon) OR
+
+  npm start
+  ```
+
+## Mock Up
+
+You can access the walkthrought video on Google Drive at: https://drive.google.com/file/d/1zcU-pfHcHx4elPuo2f8xFYOr64iVqdck/view?usp=sharing
+The walkthrough video showsthe following:
+* Seeding of the data in local MongoDB
+* Starting of server with nodemon mode
+* Examples of the application's API routes being tested in Insomnia.
+  * GET(all & single), POST, PUT, and DELETE routes for users being tested in Insomnia.
+    * Bonus: when you delete a user, associated thoughts are deleted too .  Please wait till end of the video to see this.
+  * GET(all & single) , POST, PUT, and DELETE routes for thoughts being tested in Insomnia.
+  * POST and DELETE routes for a user’s friend list being tested in Insomnia.
+  * POST and DELETE routes for reactions to a thoughts being tested in Insomnia.
+
+## Usage
+1. You can access the file in GitHub repository: https://github.com/rbhumbla1/E-Commerce-Back-End
+2. Run the application in the terminal using this command: 
+```
+npm server OR  npm run dev
+```
+3. You can access the routes using the insomnia using prefix http://localhost:3001
+
+## License
+None
+
+## Contributing
+
+Contact owner
+
+## Questions
+
+  If you have any questions about the repository and project, or would like to open an issue or would like to contact me for contributing or any other subject, you can do so at rima.bhumbla@gmail.com. You can welcome to see more of my work at https://github.com/rbhumbla1.
+
 
